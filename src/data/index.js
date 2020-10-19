@@ -13,9 +13,7 @@ const data = {
                             title: "Meeting Title",
                             location : "Building Room Floor 2",
                             isCanceled: true,
-                            isEditable: false,
-                            isCompleted: false
-                        },
+                            isEditable: false                        },
                         {
                             start: "10:30a",
                             end: "11:00a",
@@ -23,9 +21,7 @@ const data = {
                             title: "Extended Meeting name",
                             location : "Extended Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: false,
-                            isCompleted: false
-                        },
+                            isEditable: false                        },
                         {
                             start: "1:30p",
                             end: "2:30p",
@@ -33,9 +29,7 @@ const data = {
                             title: "Meeting name",
                             location : "Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: false,
-                            isCompleted: false
-                        }
+                            isEditable: false                        }
                     ] 
                 },
                 {
@@ -48,9 +42,7 @@ const data = {
                             title: "Meeting Title",
                             location : "Building Room Floor 2",
                             isCanceled: true,
-                            isEditable: false,
-                            isCompleted: false
-                        },
+                            isEditable: false                        },
                         {
                             start: "10:00a",
                             end: "11:00a",
@@ -58,9 +50,7 @@ const data = {
                             title: "Extended Meeting name",
                             location : "Extended Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: true,
-                            isCompleted: false
-                        },
+                            isEditable: true                        },
                         {
                             start: "2:30p",
                             end: "3:30p",
@@ -68,9 +58,7 @@ const data = {
                             title: "Meeting name",
                             location : "Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: false,
-                            isCompleted: true
-                        }
+                            isEditable: false                        }
                     ] 
                 },
                 {
@@ -83,9 +71,7 @@ const data = {
                             title: "Meeting Title",
                             location : "Building Room Floor 2",
                             isCanceled: true,
-                            isEditable: false,
-                            isCompleted: false
-                        },
+                            isEditable: false                        },
                         {
                             start: "10:00a",
                             end: "11:00a",
@@ -93,9 +79,7 @@ const data = {
                             title: "Extended Meeting name",
                             location : "Extended Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: true,
-                            isCompleted: false
-                        },
+                            isEditable: true                        },
                         {
                             start: "2:30p",
                             end: "3:30p",
@@ -103,9 +87,7 @@ const data = {
                             title: "Meeting name",
                             location : "Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: false,
-                            isCompleted: true
-                        }
+                            isEditable: false                        }
                     ] 
                 },
                 {
@@ -118,9 +100,7 @@ const data = {
                             title: "Meeting Title",
                             location : "Building Room Floor 2",
                             isCanceled: true,
-                            isEditable: false,
-                            isCompleted: false
-                        },
+                            isEditable: false                        },
                         {
                             start: "10:00a",
                             end: "11:00a",
@@ -128,9 +108,7 @@ const data = {
                             title: "Extended Meeting name",
                             location : "Extended Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: true,
-                            isCompleted: false
-                        },
+                            isEditable: true                        },
                         {
                             start: "2:30p",
                             end: "3:30p",
@@ -138,9 +116,7 @@ const data = {
                             title: "Meeting name",
                             location : "Building Room Floor 2",
                             isCanceled: false,
-                            isEditable: false,
-                            isCompleted: true
-                        }
+                            isEditable: false                        }
                     ] 
                 }
             ]
@@ -154,9 +130,7 @@ const data = {
             title: "Meeting Title",
             location : "Building Room Floor 2",
             isCanceled: true,
-            isEditable: false,
-            isCompleted: false
-        },
+            isEditable: false        },
         {
             start: "10:30a",
             end: "11:00a",
@@ -164,9 +138,7 @@ const data = {
             title: "Extended Meeting name",
             location : "Extended Building Room Floor 2",
             isCanceled: false,
-            isEditable: false,
-            isCompleted: false
-        },
+            isEditable: false        },
         {
             start: "1:30p",
             end: "2:30p",
@@ -174,9 +146,7 @@ const data = {
             title: "Meeting name",
             location : "Building Room Floor 2",
             isCanceled: false,
-            isEditable: false,
-            isCompleted: false
-        }
+            isEditable: false        }
     ] 
 };
 
