@@ -123,7 +123,7 @@ const data = [
 
 function formatJson() {
   let monthMap = {};
-  data.filter(a => (Moment().diff(Moment.unix(parseInt(a.start.seconds)), 'days') < 0) || (Moment.unix(parseInt(a.start.seconds)).format("ddd MMM DD") === Moment().format("ddd MMM DD"))).sort((a,b) => parseInt(a.start.seconds) - parseInt(b.start.seconds)).forEach(event => {
+  data.filter(a => (Moment().diff(Moment.unix(parseInt(a.start.seconds)), 'days') <= 0) || (Moment.unix(parseInt(a.start.seconds)).format("ddd MMM DD") === Moment().format("ddd MMM DD"))).sort((a,b) => parseInt(a.start.seconds) - parseInt(b.start.seconds)).forEach(event => {
   let unixTime = Moment.unix(event.start.seconds);
   if(monthMap[unixTime.format('MMMM')]){
       if(monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')]) {
