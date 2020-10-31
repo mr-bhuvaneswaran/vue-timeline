@@ -1,6 +1,6 @@
-import TimeLine from '../components/TimeLine.vue'
 import DashBoard from '../components/DashBoard.vue'
 import VueRouter from "vue-router";
+import AllMeetings from '../components/AllMeetings.vue'
 
 const routes = [
   {
@@ -9,9 +9,9 @@ const routes = [
     component: DashBoard,
   },
   {
-    path: "/timeline",
-    name: "TimeLine",
-    component: TimeLine,
+    path: "/all-meetings",
+    name: "AllMeetings",
+    component: AllMeetings,
   },
   {
     path: "/:pathMatch(.*)*",
