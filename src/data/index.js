@@ -1,4 +1,6 @@
-import Moment from 'moment'
+// import Moment from 'moment'
+
+const DataRepo = {};
 
 const data = [
   {
@@ -121,33 +123,43 @@ const data = [
  
 ];
 
-function formatJson() {
-  let monthMap = {};
-  data.filter(a => (Moment().diff(Moment.unix(parseInt(a.start.seconds)), 'days') <= 0) || (Moment.unix(parseInt(a.start.seconds)).format("ddd MMM DD") === Moment().format("ddd MMM DD"))).sort((a,b) => parseInt(a.start.seconds) - parseInt(b.start.seconds)).forEach(event => {
-  let unixTime = Moment.unix(event.start.seconds);
-  if(monthMap[unixTime.format('MMMM')]){
-      if(monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')]) {
-      monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')].push({ type: 'EVENT', value: event});
-      } else {
-      monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')] = [{ type: 'EVENT', value: event}];
-      }
-  } else {
-      monthMap[unixTime.format('MMMM')] = {
-      [unixTime.format('ddd MMM DD')]: [{ type: 'EVENT', value: event}]
-      }
-  }
-  });
-  let dataList = [];
-  let today = Moment().format('ddd MMM DD');
-  Object.keys(monthMap).forEach(key => {
-    let days = monthMap[key];
-    dataList.push({ type: 'MONTH', value: key});
-    Object.keys(days).forEach(day => {
-      dataList.push({type: 'DAY', value: day==today ? 'TODAY': day});
-      dataList.push(...days[day])
-    });
-  });
-  return dataList;
+// function formatJson() {
+//   let monthMap = {};
+//   data.filter(a => (Moment().diff(Moment.unix(parseInt(a.start.seconds)), 'days') <= 0) || (Moment.unix(parseInt(a.start.seconds)).format("ddd MMM DD") === Moment().format("ddd MMM DD"))).sort((a,b) => parseInt(a.start.seconds) - parseInt(b.start.seconds)).forEach(event => {
+//   let unixTime = Moment.unix(event.start.seconds);
+//   if(monthMap[unixTime.format('MMMM')]){
+//       if(monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')]) {
+//       monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')].push({ type: 'EVENT', value: event});
+//       } else {
+//       monthMap[unixTime.format('MMMM')][unixTime.format('ddd MMM DD')] = [{ type: 'EVENT', value: event}];
+//       }
+//   } else {
+//       monthMap[unixTime.format('MMMM')] = {
+//       [unixTime.format('ddd MMM DD')]: [{ type: 'EVENT', value: event}]
+//       }
+//   }
+//   });
+//   let dataList = [];
+//   let today = Moment().format('ddd MMM DD');
+//   Object.keys(monthMap).forEach(key => {
+//     let days = monthMap[key];
+//     dataList.push({ type: 'MONTH', value: key});
+//     Object.keys(days).forEach(day => {
+//       dataList.push({type: 'DAY', value: day==today ? 'TODAY': day});
+//       dataList.push(...days[day])
+//     });
+//   });
+//   return dataList;
+// }
+
+
+
+DataRepo.todayMeetings = () => {
+  return data.slice(0, 3);
 }
 
-export default formatJson();
+DataRepo.allMeetings = () => {
+
+}
+
+export default DataRepo;

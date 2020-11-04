@@ -1,0 +1,22 @@
+$space-baseline: 0.25rem !default; // 4px
+
+$space-xxs-unit:  0.5 !default;
+$space-xs-unit:   1 !default;
+$space-s-unit:    2 !default;
+$space-m-unit:    3 !default;
+$space-l-unit:    4 !default;
+$space-xl-unit:   6 !default;
+$space-xxl-unit:  8 !default;
+$space-xxxl-unit: 12 !default;
+
+$space-xxs:  $space-baseline * $space-xxs-unit !default;
+$space-xs:   $space-baseline * $space-xs-unit !default;
+$space-s:    $space-baseline * $space-s-unit !default;
+$space-m:    $space-baseline * $space-m-unit !default;
+$space-l:    $space-baseline * $space-l-unit !default;
+$space-xl:   $space-baseline * $space-xl-unit !default;
+$space-xxl:  $space-baseline * $space-xxl-unit !default;
+$space-xxxl: $space-baseline * $space-xxxl-unit !default;
+
+$space-min-touch-target-unit: 11 !default; // 44px is min touch target
+$space-min-touch-target: $space-baseline * $space-min-touch-target-unit !default;

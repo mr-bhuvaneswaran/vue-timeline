@@ -4,8 +4,27 @@
 
             <header class="card-header">Upcoming Meetings</header>
 
+            <div class="month-date-text">
+                TODAY
+            </div>
+
             <main class="card-content">
-                <TimeLine :is-summary = 'true'/>            
+                <section class="timeline-item" :class="[{seperator: index !== 0},
+                    {cancelled: item.is_cancelled} ]" v-for="(item, index)  in timelineData" :key="item.start.seconds + item.name">
+                    <a :href="item.link" class="item-nav" target="_blank">
+                        <div class="time-content" :class="[{clickable: !item.is_cancelled }, {cancelled: item.is_cancelled}]">
+                            <div class="time-range">
+                                <div>{{timeFormatted(item.start.seconds)}}</div>
+                                <div>{{timeFormatted(item.end.seconds)}}</div>
+                            </div>
+                            <div class="color" :class="[item.priority.toLowerCase()]">&centerdot;</div>
+                            <div class="details">
+                                <div class="meeting-title">{{item.name}}</div>
+                                <div class="location">{{item.location}}</div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
             </main>
 
             <footer class="card-footer">
@@ -19,18 +38,20 @@
 </template>
 
 <script>
-import TimeLine from './TimeLine.vue'
 import Data from '../data';
+import Moment from 'moment'
 
 export default {
     name: 'DashBoard',
-    components: {
-        TimeLine
-    },
     data: function() {
         return {
-            timelineData : Data,
+            timelineData : Data.todayMeetings(),
         };
+    },
+    methods: {
+        timeFormatted: function(milliseconds) {
+            return Moment.unix(parseInt(milliseconds)).format('LT');
+        }
     }
 }
 </script>
@@ -134,5 +155,70 @@ export default {
   margin-top: 4px;
   font-size: 14px;
   font-weight: 600;
+}
+
+.cancelled {
+  opacity: 0.5;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.low {
+    color: grey;
+}
+
+.normal {
+    color: #FFC107;
+}
+
+.high {
+    color: green;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.item-nav{
+    text-decoration: none;
+}
+
+.time-content {
+    display: grid;
+    grid-template-columns: 21% 14% 65%;
+    margin-left: 26px;
+}
+
+.seperator {
+    border-top: 1.5px solid #607d8b2e;
+}
+
+.timeline-item {
+    padding: 12px 0px;
+}
+
+.time-range{
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000c7;
+}
+
+.meeting-title {
+    font-weight: 600;
+    color: #000;
+}
+
+.color {
+    font-size: 34px;
+    font-weight: 900;
+    font-family: monospace;
+}
+
+.location {
+    color: #00000070;
+    font-weight: 500;
+    font-size: 14px;
 }
 </style>
