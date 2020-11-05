@@ -2,12 +2,14 @@
     <article class="main-content">
         <section class="card">
 
-            <header class="card-header">Upcoming Meetings</header>
+            <header class="card-header">
+                
+                Upcoming Meetings
+                </header>
 
             <main class="card-content">
                 <section class="timeline-item" 
                  v-for="(item, index)  in timelineData" 
-                 :class="[{seperator: index !== 0 && !(index == 0 || getDate(timelineData[index -1].start.seconds) !== getDate(item.start.seconds))} ]"
                 :key="item.start.seconds + item.name">
 
                     <div class="month-text" v-if="!isSummary && 
@@ -21,7 +23,8 @@
                     </div>
 
                     <a :href="item.link" class="item-nav" target="_blank">
-                        <div class="time-content" :class="[{clickable: !item.is_cancelled }, {cancelled: item.is_cancelled}]">
+                        <div class="time-content" :class="[{clickable: !item.is_cancelled }, {cancelled: item.is_cancelled},
+                        {seperator: index !== 0 && !(index == 0 || getDate(timelineData[index -1].start.seconds) !== getDate(item.start.seconds))}]">
                             <div class="time-range">
                                 <div>{{timeFormatted(item.start.seconds)}}</div>
                                 <div>{{timeFormatted(item.end.seconds)}}</div>
@@ -97,6 +100,52 @@ export default {
 .main-content{
     display: flex;
     justify-content: center;
+}
+
+.card-content{
+    max-height: 90vh;
+    overflow: scroll;
+}
+
+
+@media only screen and (min-width: 360px) {
+    .card {
+        width: 100%
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .card {
+        width: 65%
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .card {
+        width: 55%
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .card {
+        width: 45%
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .card {
+        width: 30%
+    }
+}
+/* Extra large devices (large laptops and desktops, 1280px and up) */
+@media only screen and (min-width: 1800px) {
+    .card {
+        width: 25%
+    }
 }
 
 .card {
@@ -185,7 +234,7 @@ export default {
 }
 
 .seperator {
-    border-top: $space-xxs solid #607d8b2e;
+    border-top: 0.1rem solid #607d8b2e;
 }
 
 .timeline-item {
