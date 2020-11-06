@@ -10,7 +10,7 @@
                 <div class="header-text">Upcoming meetings</div>
             </header>
 
-            <main class="card-content" @scroll="onScroll">
+            <main class="card-content" infinite-wrapper>
                 <section class="timeline-item" 
                  v-for="(item, index)  in timelineData" 
                 :key="item.start.seconds + item.name">
@@ -40,6 +40,9 @@
                         </div>
                     </a>
                 </section>
+                <infinite-loading v-if="!isSummary" @infinite="infiniteHandler" 
+                force-use-infinite-wrapper="true">
+                </infinite-loading>
             </main>
 
             <footer class="card-footer" v-if="isSummary" @click="isSummary = !isSummary;loadMeetings()">
@@ -52,15 +55,20 @@
 
 <script>
 import Data from '../data';
-import Moment from 'moment'
+import Moment from 'moment';
+import InfiniteLoading from 'vue-infinite-loading';
 
 export default {
     name: 'Main',
+    components: {
+     InfiniteLoading
+    },
     data: function() {
         return {
             timelineData : Data.todayMeetings(),
             isSummary: true,
-            currentMonth: null
+            currentMonth: null,
+            completed: false
         };
     },
     methods: {
@@ -78,20 +86,27 @@ export default {
         loadMeetings: function() {
             const currentDate = Moment.now();
             const endDate = Moment().add(30, 'days').unix()
-            this.timelineData.push(...Data.getMeetings(currentDate, endDate, this.timelineData.length, 5))
+            const events = Data.getMeetings(currentDate, endDate, this.timelineData.length, 5);
+            if(events.length === 0) {
+                this.completed = true;
+            } else {
+                this.completed = false;
+            }
+            this.timelineData.push(...events);
         },
-        onScroll: function ({ target: { scrollTop, clientHeight, scrollHeight }}) {
-            if (scrollTop + clientHeight >= scrollHeight && !this.isSummary) {
+        infiniteHandler: function ($state) {
+            if (!this.isSummary && !this.completed) {
                 this.loadMeetings()
+                $state.loaded();
+            } else {
+                $state.complete();
             }
         },
         backToSummary: function(){
             this.isSummary = true;
             this.timelineData = Data.todayMeetings();
+            this.completed = false;
         }
-    },
-    mounted () {
-        this.scroll()
     }
 }
 </script>
