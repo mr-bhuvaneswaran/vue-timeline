@@ -15,19 +15,18 @@
                  v-for="(item, index)  in timelineData" 
                 :key="item.start.seconds + item.name">
 
-                    <div class="month-text" v-if="!isSummary && 
-                    (index == 0 || getMonth(timelineData[index -1].start.seconds) !== getMonth(item.start.seconds))"> 
+                    <div class="month-text" v-if="isMonthTextVisible(index, item)"> 
                         {{getMonth(item.start.seconds)}}
                     </div> 
 
                     <div class="month-date-text"
-                        v-if="index == 0 || getDate(timelineData[index -1].start.seconds) !== getDate(item.start.seconds)">
+                        v-if="isDateTextVisible()">
                         {{getDate(item.start.seconds)}}
                     </div>
 
                     <a :href="item.link" class="item-nav" target="_blank">
                         <div class="time-content" :class="[{clickable: !item.is_cancelled }, {cancelled: item.is_cancelled},
-                        {seperator: index !== 0 && !(index == 0 || getDate(timelineData[index -1].start.seconds) !== getDate(item.start.seconds))}]">
+                        {seperator: isSeperatorVisible(index, item)}]">
                             <div class="time-range">
                                 <div>{{timeFormatted(item.start.seconds)}}</div>
                                 <div>{{timeFormatted(item.end.seconds)}}</div>
@@ -72,6 +71,16 @@ export default {
         };
     },
     methods: {
+        isMonthTextVisible: function(index, item) {
+            return  !this.isSummary && 
+                    (index == 0 || this.getMonth(this.timelineData[index -1].start.seconds) !== this.getMonth(item.start.seconds));
+        },
+        isDateTextVisible: function(index, item) {
+            return index == 0 || this.getDate(this.timelineData[index -1].start.seconds) !== this.getDate(item.start.seconds);
+        },
+        isSeperatorVisible: function(index, item) {
+            return index !== 0 && !(index == 0 || this.getDate(this.timelineData[index -1].start.seconds) !== this.getDate(item.start.seconds));
+        },
         timeFormatted: function(milliseconds) {
             return Moment.unix(parseInt(milliseconds)).format('LT');
         },
